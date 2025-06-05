@@ -20,6 +20,7 @@ interface ProductType {
     name: string;
   };
   createdAt: string;
+  stock: number;
 }
 
 function ProductsContent() {
@@ -91,6 +92,12 @@ function ProductsContent() {
 
   const handleAddToCart = (e: React.MouseEvent, product: ProductType) => {
     e.preventDefault();
+    
+    if (product.stock <= 0) {
+      toast.error('This product is out of stock');
+      return;
+    }
+    
     addItem({
       _id: product._id,
       name: product.name,
@@ -158,8 +165,9 @@ function ProductsContent() {
                   className="px-6 py-2 w-full" 
                   variant="default"
                   onClick={(e) => handleAddToCart(e, product)}
+                  disabled={product.stock <= 0}
                 >
-                  Add to Cart
+                  {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                 </Button>
               </div>
             </Link>

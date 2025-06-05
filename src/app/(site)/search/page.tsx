@@ -19,6 +19,7 @@ interface Product {
     name: string;
   };
   createdAt: string;
+  stock: number;
 }
 
 function SearchContent() {
@@ -48,16 +49,22 @@ function SearchContent() {
   }, [query, fetchProducts]);
 
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
-      e.preventDefault();
-      addItem({
-        _id: product._id,
-        name: product.name,
-        price: product.price,
-        image: product.images[0],
-        quantity: 1
-      });
-      toast.success('Added to cart!');
-    };
+    e.preventDefault();
+    
+    if (product.stock <= 0) {
+      toast.error('This product is out of stock');
+      return;
+    }
+    
+    addItem({
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+      quantity: 1
+    });
+    toast.success('Added to cart!');
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -97,8 +104,9 @@ function SearchContent() {
                   className="px-6 py-2 w-full" 
                   variant="default"
                   onClick={(e) => handleAddToCart(e, product)}
+                  disabled={product.stock <= 0}
                 >
-                  Add to Cart
+                  {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                 </Button>
               </div>
             </Link>
