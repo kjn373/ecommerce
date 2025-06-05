@@ -170,7 +170,7 @@ export default function ProductForm({ product }: ProductFormProps) {
                 <select
                     value={formData.category}
                     onChange={e => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 bg-card border rounded"
                     required
                 >
                     <option value="">Select a category</option>
