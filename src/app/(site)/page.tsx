@@ -25,17 +25,17 @@ const categories = [
   {
     name: 'Watches',
     image: 'https://images.unsplash.com/photo-1506796684999-9fa2770af9c3?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    slug: 'watch'
+    slug: 'watches'
   },
   {
     name: 'Bracelets',
     image: 'https://images.unsplash.com/photo-1619119069152-a2b331eb392a?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    slug: 'bracelet'
+    slug: 'bracelets'
   },
   {
     name: 'Rings',
     image: 'https://images.unsplash.com/photo-1550368566-f9cc32d7392d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    slug: 'ring'
+    slug: 'rings'
   }
 ];
 
