@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import { Product } from '@/models/product';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Category } from '@/models/category';
+import '@/models/category';
 
 export async function GET(
     request: Request,

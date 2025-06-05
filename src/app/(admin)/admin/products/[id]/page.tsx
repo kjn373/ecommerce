@@ -1,7 +1,6 @@
 import { connectToDatabase } from '@/lib/mongodb';
 import { Product } from '@/models/product';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Category } from '@/models/category';
+import '@/models/category';
 import ProductForm from '@/components/ProductForm';
 
 export default async function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
