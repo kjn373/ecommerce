@@ -1,0 +1,7 @@
+User Accounts:
+karjen@gmail.com | Password1#5
+test@mail.com | Test1234*
+
+Admin Accounts: 
+admin2@mail.com | Admin123*
+admin@mail.com | Admin##123
