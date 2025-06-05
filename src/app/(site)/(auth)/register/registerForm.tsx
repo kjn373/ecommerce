@@ -15,6 +15,7 @@ export default function RegisterForm(){
     const validationSchema = Yup.object({
         username: Yup.string()
             .min(3,"Username must at least be 3 characters")
+            .matches(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscore')
             .required("Username is required"),
         email: Yup.string()
             .email("Invalid email format")
