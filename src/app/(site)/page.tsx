@@ -18,6 +18,7 @@ interface Product {
     name: string;
   };
   createdAt: string;
+  stock: number;
 }
 
 const categories = [
@@ -58,6 +59,12 @@ export default function Home() {
 
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
+
+    if (product.stock <= 0) {
+      toast.error('This product is out of stock');
+      return;
+    }
+    
     addItem({
       _id: product._id,
       name: product.name,
@@ -142,11 +149,12 @@ export default function Home() {
                 <p className="text-gray-600 font-body mb-2 text-center line-clamp-2">{product.description}</p>
                 <span className="text-lg font-body font-bold mb-4">${product.price}</span>
                 <Button 
-                  className="px-6 py-2 w-full font-body  " 
+                  className="px-6 py-2 w-full font-body" 
                   variant="default"
                   onClick={(e) => handleAddToCart(e, product)}
+                  disabled={product.stock <= 0}
                 >
-                  Add to Cart
+                  {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                 </Button>
               </div>
             </Link>
