@@ -3,8 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Order } from "@/models/order";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Product } from "@/models/product";
+import "@/models/product"; // Import for side effects to ensure Product model is loaded
 
 export async function GET() {
   try {
