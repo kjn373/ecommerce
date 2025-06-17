@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface WishlistItem {
   _id: string;
@@ -37,18 +37,18 @@ export const useWishlistStore = create<WishlistStore>()(
         try {
           // Fetch wishlist from server
           const response = await fetch(`/api/wishlist/${userId}`);
-          if (!response.ok) throw new Error('Failed to fetch wishlist');
+          if (!response.ok) throw new Error("Failed to fetch wishlist");
           const data = await response.json();
-          
+
           // Update local state with server data
           set({ items: data.items });
         } catch (error) {
-          console.error('Error syncing wishlist:', error);
+          console.error("Error syncing wishlist:", error);
         }
       },
     }),
     {
-      name: 'wishlist-storage',
-    }
-  )
-); 
+      name: "wishlist-storage",
+    },
+  ),
+);

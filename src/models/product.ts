@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export interface IProduct {
   _id: mongoose.Types.ObjectId;
@@ -17,11 +17,12 @@ const ProductSchema = new mongoose.Schema<IProduct>(
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    images: [{type:String}],
-    category: {type: mongoose.Schema.Types.ObjectId, ref:'Category'},
+    images: [{ type: String }],
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
     stock: { type: Number, required: true, default: 0 },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export const Product = mongoose.models.Product || mongoose.model<IProduct>('Product', ProductSchema); 
+export const Product =
+  mongoose.models.Product || mongoose.model<IProduct>("Product", ProductSchema);

@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import axios from 'axios';
+import { create } from "zustand";
+import axios from "axios";
 
 interface Product {
   _id: string;
@@ -32,11 +32,11 @@ export const useProductStore = create<ProductStore>()((set) => ({
   fetchProducts: async () => {
     set({ loading: true, error: null });
     try {
-      const { data: products } = await axios.get('/api/products');
+      const { data: products } = await axios.get("/api/products");
       set({ products, loading: false });
     } catch (error) {
       console.log(error);
-      set({ error: 'Failed to fetch products', loading: false });
+      set({ error: "Failed to fetch products", loading: false });
     }
   },
-})); 
+}));

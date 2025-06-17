@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
-import { Toaster } from 'sonner';
+import { Toaster } from "sonner";
 import Providers from "@/components/providers";
 
 // Playfair Display for headings - elegant serif font
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: '--font-playfair',
-  display: 'swap',
+  variable: "--font-playfair",
+  display: "swap",
 });
 
 // Montserrat for body text - clean, modern sans-serif
 const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: '--font-montserrat',
-  display: 'swap',
+  variable: "--font-montserrat",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

@@ -58,10 +58,12 @@ export default function UsersPage() {
 
   async function handleDelete() {
     if (!userToDelete) return;
-    
+
     setDeletingId(userToDelete._id);
     try {
-      const res = await fetch(`/api/user/${userToDelete._id}`, { method: "DELETE" });
+      const res = await fetch(`/api/user/${userToDelete._id}`, {
+        method: "DELETE",
+      });
       if (!res.ok) throw new Error("Failed to delete user");
       setUsers((prev) => prev.filter((user) => user._id !== userToDelete._id));
       closeDeleteDialog();
@@ -134,7 +136,8 @@ export default function UsersPage() {
           <DialogHeader>
             <DialogTitle>Delete User</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete the user &quot;{userToDelete?.username}&quot;? This action cannot be undone.
+              Are you sure you want to delete the user &quot;
+              {userToDelete?.username}&quot;? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

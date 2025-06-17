@@ -24,4 +24,4 @@ declare module "next-auth/jwt" {
     id: string;
     accountType: string;
   }
-} 
+}

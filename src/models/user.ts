@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 export type IUser = {
   _id: mongoose.Types.ObjectId;
@@ -9,7 +9,7 @@ export type IUser = {
   accountType: "ADMIN" | "USER";
   createdAt: Date;
   updatedAt: Date;
-}
+};
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -18,27 +18,31 @@ const userSchema = new mongoose.Schema<IUser>(
     password: { type: String, required: true },
     accountType: { type: String, required: true, default: "USER" },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Hash password before saving
-userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
-  
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Error hashing password:', errorMessage);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Error hashing password:", errorMessage);
     next(error as Error);
   }
 });
 
 // Method to compare password
-userSchema.methods.comparePassword = async function(candidatePassword: string): Promise<boolean> {
+userSchema.methods.comparePassword = async function (
+  candidatePassword: string,
+): Promise<boolean> {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-export const User = mongoose.models.User || mongoose.model<IUser>('User', userSchema); 
+export const User =
+  mongoose.models.User || mongoose.model<IUser>("User", userSchema);

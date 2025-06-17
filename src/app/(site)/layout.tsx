@@ -8,11 +8,9 @@ export default function SiteLayout({
 }>) {
   return (
     <>
-      <Navbar/>
-      <main className="pt-20 min-h-screen">
-        {children}
-      </main>
-      <Footer/>
+      <Navbar />
+      <main className="pt-20 min-h-screen">{children}</main>
+      <Footer />
     </>
   );
 }

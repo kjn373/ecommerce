@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
 
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
-            user.password
+            user.password,
           );
 
           if (!isPasswordValid) {
@@ -38,14 +38,14 @@ export const authOptions: NextAuthOptions = {
             id: user._id.toString(),
             email: user.email,
             username: user.username,
-            accountType: user.accountType
+            accountType: user.accountType,
           };
         } catch (error) {
           console.error("Error in auth:", error);
           return null;
         }
-      }
-    })
+      },
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -75,7 +75,7 @@ export const authOptions: NextAuthOptions = {
         console.error("Error in signIn callback:", error);
         return true; // Still allow sign in even if cart merging fails
       }
-    }
+    },
   },
   pages: {
     signIn: "/login",
@@ -89,11 +89,11 @@ export const authOptions: NextAuthOptions = {
       name: `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        secure: process.env.NODE_ENV === 'production'
-      }
-    }
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
-}; 
+};

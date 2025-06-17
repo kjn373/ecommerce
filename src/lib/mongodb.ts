@@ -1,9 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGO_URL;
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGO_URL environment variable inside .env.local');
+  throw new Error(
+    "Please define the MONGO_URL environment variable inside .env.local",
+  );
 }
 
 interface MongooseCache {
@@ -32,9 +34,11 @@ export async function connectToDatabase() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI as string, opts).then((mongoose) => {
-      return mongoose;
-    });
+    cached.promise = mongoose
+      .connect(MONGODB_URI as string, opts)
+      .then((mongoose) => {
+        return mongoose;
+      });
   }
 
   try {
@@ -45,4 +49,4 @@ export async function connectToDatabase() {
   }
 
   return cached.conn;
-} 
+}

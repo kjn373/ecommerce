@@ -3,6 +3,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --animate-shine: shine 5s linear infinite;
+
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: -100%;
+    }
+  }
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -43,41 +56,40 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-heading: var(--font-playfair);
   --font-body: var(--font-montserrat);
-  
 }
 
 @layer base {
   :root {
-    --background: #F5F3F0; /* Soft cream background */
-    --foreground: #1A1A1A; /* Deep charcoal for text */
-  
-    --card: #F8F6F2; /* Slightly lighter cream for cards */
+    --background: #f5f3f0; /* Soft cream background */
+    --foreground: #1a1a1a; /* Deep charcoal for text */
+
+    --card: #f8f6f2; /* Slightly lighter cream for cards */
     --subcard: #f0eee7;
-    --card-foreground: #1A1A1A;
-  
-    --popover: #F8F6F2; /* Matching card color */
-    --popover-foreground: #1A1A1A;
-  
+    --card-foreground: #1a1a1a;
+
+    --popover: #f8f6f2; /* Matching card color */
+    --popover-foreground: #1a1a1a;
+
     --primary: #06201f; /* Deep teal */
-    --primary-foreground: #FFFFFF; /* White text on teal */
-  
-    --secondary: #B8860B; /* Dark goldenrod - luxury gold */
-    --secondary-foreground: #FFFFFF; /* White text on gold */
-  
-    --muted: #EDEAE4; /* Slightly darker cream for muted elements */
-    --muted-foreground: #6B7280; /* Muted gray for secondary text */
-  
-    --accent: #0A4D4D; /* Lighter teal for accents */
+    --primary-foreground: #ffffff; /* White text on teal */
+
+    --secondary: #b8860b; /* Dark goldenrod - luxury gold */
+    --secondary-foreground: #ffffff; /* White text on gold */
+
+    --muted: #edeae4; /* Slightly darker cream for muted elements */
+    --muted-foreground: #6b7280; /* Muted gray for secondary text */
+
+    --accent: #0a4d4d; /* Lighter teal for accents */
     --navaccent: #7c9f9c;
-    --accent-foreground: #FFFFFF; /* White text on accent */
-  
+    --accent-foreground: #ffffff; /* White text on accent */
+
     --destructive: #d63d3d; /* Deep red for errors */
-    --destructive-foreground: #FFFFFF; /* White on red */
-  
-    --border: #E5E0D5; /* Soft taupe border */
-    --input: #EDEAE4;  /* Matching muted color for inputs */
-    --ring: #06201f;  /* Teal ring focus */
-  
+    --destructive-foreground: #ffffff; /* White on red */
+
+    --border: #e5e0d5; /* Soft taupe border */
+    --input: #edeae4; /* Matching muted color for inputs */
+    --ring: #06201f; /* Teal ring focus */
+
     --radius: 0.5rem;
   }
 }

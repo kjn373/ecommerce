@@ -1,11 +1,11 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface User {
   id: string;
   name: string;
   email: string;
-  role: 'user' | 'admin';
+  role: "user" | "admin";
 }
 
 interface UserStore {
@@ -24,7 +24,7 @@ export const useUserStore = create<UserStore>()(
       logout: () => set({ user: null, isAuthenticated: false }),
     }),
     {
-      name: 'user-storage',
-    }
-  )
-); 
+      name: "user-storage",
+    },
+  ),
+);

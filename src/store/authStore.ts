@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { signIn, signOut, getSession } from 'next-auth/react';
-import { useCartStore } from './cartStore';
+import { create } from "zustand";
+import { signIn, signOut, getSession } from "next-auth/react";
+import { useCartStore } from "./cartStore";
 
 interface User {
   id: string;
@@ -30,47 +30,49 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const session = await getSession();
       if (session?.user) {
-        set({ 
+        set({
           user: {
             id: session.user.id,
             username: session.user.username,
             email: session.user.email,
-            accountType: session.user.accountType
+            accountType: session.user.accountType,
           },
           isAuthenticated: true,
-          loading: false 
+          loading: false,
         });
       } else {
-        set({ 
+        set({
           user: null,
           isAuthenticated: false,
-          loading: false 
+          loading: false,
         });
       }
     } catch (error) {
-      console.error('Auth check error:', error);
-      set({ 
+      console.error("Auth check error:", error);
+      set({
         user: null,
         isAuthenticated: false,
-        loading: false 
+        loading: false,
       });
     }
   },
   login: async (email: string, password: string) => {
     try {
-      const result = await signIn('credentials', {
+      const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
-        callbackUrl: '/'
+        callbackUrl: "/",
       });
 
       if (result?.error) {
         // Map NextAuth error messages to user-friendly messages
-        if (result.error === 'CredentialsSignin') {
-          throw new Error('Invalid email or password. Please try again.');
-        } else if (result.error.includes('user not found')) {
-          throw new Error('User not found. Please check your email or sign up.');
+        if (result.error === "CredentialsSignin") {
+          throw new Error("Invalid email or password. Please try again.");
+        } else if (result.error.includes("user not found")) {
+          throw new Error(
+            "User not found. Please check your email or sign up.",
+          );
         } else {
           throw new Error(result.error);
         }
@@ -78,33 +80,34 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       const session = await getSession();
       if (session?.user) {
-        set({ 
+        set({
           user: {
             id: session.user.id,
             username: session.user.username,
             email: session.user.email,
-            accountType: session.user.accountType
+            accountType: session.user.accountType,
           },
           isAuthenticated: true,
-          loading: false 
+          loading: false,
         });
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      console.error('Login error:', errorMessage);
-      throw new Error('Login failed. Please try again.');
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
+      console.error("Login error:", errorMessage);
+      throw new Error("Login failed. Please try again.");
     }
   },
   logout: async () => {
     try {
       await signOut({ redirect: false });
       set({ user: null, isAuthenticated: false });
-      
+
       // Reset the cart when a user logs out
       const resetCart = useCartStore.getState().resetCart;
       resetCart();
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
-  }
-})); 
+  },
+}));
