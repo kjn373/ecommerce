@@ -22,15 +22,41 @@ interface CartItem {
 const checkoutSchema = Yup.object().shape({
   name: Yup.string()
     .required("Name is required")
+    .trim()
+    .test(
+      "not-just-whitespace",
+      "Name cannot contain only whitespace",
+      value => !/^\s*$/.test(value || "")
+    )
     .min(2, "Name must be at least 2 characters"),
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
   address: Yup.string()
     .required("Address is required")
+    .trim()
+    .test(
+      "not-just-whitespace",
+      "Address cannot contain only whitespace",
+      value => !/^\s*$/.test(value || "")
+    )
     .min(5, "Address must be at least 5 characters"),
-  city: Yup.string().required("City is required"),
-  country: Yup.string().required("Country is required"),
+  city: Yup.string()
+    .trim()
+    .test(
+      "not-just-whitespace",
+      "City cannot contain only whitespace",
+      value => !/^\s*$/.test(value || "")
+    )
+  .required("City is required"),
+  country: Yup.string()
+    .trim()
+    .test(
+      "not-just-whitespace",
+      "Country cannot contain only whitespace",
+      value => !/^\s*$/.test(value || "")
+    )
+    .required("Country is required"),
   postalCode: Yup.string()
     .required("Postal code is required")
     .matches(

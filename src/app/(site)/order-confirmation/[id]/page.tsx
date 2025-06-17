@@ -55,12 +55,14 @@ export default function OrderConfirmationPage() {
   }, [params.id]);
 
   useEffect(() => {
+    if (order && !loading) {
       confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 }
       });
-    }, []);
+    }
+  }, [order, loading]);
 
   if (loading) {
     return (
